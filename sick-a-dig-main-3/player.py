@@ -6,8 +6,8 @@ import pygame
 pygame.init()
 
 # Sound Effects
-level_up_sound = pygame.mixer.Sound("/Users/worzor/Library/Mobile Documents/com~apple~CloudDocs/VS Code/sick-a-dig-main-3/sounds/level_up.mp3")
-dig_sound = pygame.mixer.Sound("/Users/worzor/Library/Mobile Documents/com~apple~CloudDocs/VS Code/sick-a-dig-main-3/sounds/dig.mp3")
+level_up_sound = pygame.mixer.Sound("sounds/level_up.mp3")
+dig_sound = pygame.mixer.Sound("sounds/dig.mp3")
 dig_sound.set_volume(0.2)
 
 
@@ -82,11 +82,11 @@ class Player(pygame.sprite.Sprite):
                     self.dig_radius_x += 5
                     self.dig_radius_y += 5
                     self.damage_multiplier += 0.3335
-                    self.coin -= 5 ** self.level
+                    self.coin -= 50 * self.level
                     self.speed += 50
                     self.level += 1
-                elif self.coin < 5 ** self.level:
-                    self.display_message(f'You need {5 ** self.level} coins!', 1)
+                elif self.coin < 50 * self.level:
+                    self.display_message(f'You need {50 * self.level} coins!', 1)
 
         elif keys[pygame.K_e] and self.press:
             self.press = False
@@ -184,7 +184,6 @@ class Player(pygame.sprite.Sprite):
         self.frames = {'spin' : []}
 
         for folder_path, sub_folders, file_names in walk(join('pics', 'drill')):
-            print(file_names)
             if file_names:
                 for file_name in file_names:
                     if file_name != '.DS_Store':
@@ -198,19 +197,7 @@ class Player(pygame.sprite.Sprite):
         self.move(dt)
         self.rotate()
         self.animate(dt)
-
-    # def open_inventory(self):
-    #     clock = pygame.time.Clock()
-    #     while True:
-    #         clock.tick(60)
-    #         pygame.draw.rect(self.screen, "blue", (2512, 400, 400, 350))
-    #         for event in pygame.event.get():
-    #             if event.type == pygame.QUIT:
-    #                 pygame.quit()
-    #             if event.type == pygame.KEYDOWN:
-    #                 if event.key == pygame.K_i:
-    #                     return
-
+        
 class Fuel:
     def __init__(self, x, y, w, h, max_fuel):
         self.x = x

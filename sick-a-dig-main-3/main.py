@@ -8,7 +8,6 @@ from pytmx.util_pygame import load_pygame, pytmx
 from groups import Allsprites
 from random import randint
 from menu import main_menu
-from button import Button
 
 pygame.init()
 
@@ -24,7 +23,7 @@ clock = pygame.time.Clock()
 
 # sell_sound = pygame.mixer.Sound("sounds/sell.wav")
 # refuel_sound = pygame.mixer.Sound("sounds/refuel.wav")
-background_sound = pygame.mixer.Sound("/Users/worzor/Library/Mobile Documents/com~apple~CloudDocs/VS Code/sick-a-dig-main-3/sounds/background.mp3")
+background_sound = pygame.mixer.Sound("sounds/background.mp3")
 background_sound.set_volume(0.2)
 
 #groups
@@ -92,9 +91,6 @@ background_sound.play(-1)
 while running:
 
     MOUSE_POS = pygame.mouse.get_pos()
-
-    #BUTTONS
-    open_inventory_button = Button("/Users/worzor/Library/Mobile Documents/com~apple~CloudDocs/VS Code/sick-a-dig-main-3/pics/inventory.png", (sc_w/2, sc_h/2), "Inventory", None, 'white', 'green')
     
     #Data
     dt = clock.tick()/1000
@@ -103,18 +99,9 @@ while running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
-        # if event.type == pygame.MOUSEBUTTONDOWN:
-        #     if open_inventory_button.checkForInput(MOUSE_POS):
-        #         player.open_inventory()
-                
 
     #Update
     all_sprites.update(dt)
-
-    # #Button Update
-    # for button in [open_inventory_button]:
-    #     button.changeColor(MOUSE_POS)
-    #     button.update(display_surface)
 
     #Draw
     display_surface.fill('black')
